@@ -1,5 +1,3 @@
-import entity.Car;
-import entity.Marka;
 import entity.Person;
 import repository.PersonRepository;
 
@@ -32,8 +30,8 @@ public class Main {
 
 
     private static void register(EntityManager manager) {
-        System.out.println("Реєстрація");
-        System.out.println("Введіть \nім'я\nПрізвище\nЛогін\nПароль\n");
+        System.out.println("___Registration___");
+        System.out.println("Enter\nName-->\nSurname-->\nLogin-->\nPassword-->\n");
         String firstName = sc.next();
         String lastName = sc.next();
         String login = sc.next();
@@ -45,7 +43,7 @@ public class Main {
         person.setPassword(password);
         PersonRepository personRepository = new PersonRepository(manager);
         personRepository.save(person);
-        System.out.println("Ви зареєстровані");
+        System.out.println("Registration complete!");
     }
 
     public static void main(String[] args) {
@@ -54,7 +52,7 @@ public class Main {
 //        manager.getTransaction().begin();
 
         while (status) {
-            System.out.println("Оберіть пункт меню\n1.Логін\n2.Реєстрація\n3.Вихід");
+            System.out.println("Choose MENU item:\n1. Login\n2. Registration\n3. Exit");
             int menuPicker = sc.nextInt();
             switch (menuPicker) {
                 case 1:{
@@ -67,11 +65,11 @@ public class Main {
                 }
                 case 3:{
                     status = false;
-                    System.out.println("Pa-Pa");
+                    System.out.println("Have a nice day!");
                     break;
                 }
                 default:{
-                    System.out.println("Цього пункту не існує");
+                    System.out.println("This item does not exist...");
                 }
             }
         }
