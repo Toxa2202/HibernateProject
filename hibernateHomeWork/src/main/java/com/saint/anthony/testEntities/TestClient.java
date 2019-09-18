@@ -1,6 +1,6 @@
-package com.saint.anthony.hibernateHomework.testEntities;
+package com.saint.anthony.testEntities;
 
-import com.saint.anthony.hibernateHomework.entity.Client;
+import com.saint.anthony.entity.Client;
 
 import javax.persistence.*;
 import java.util.List;

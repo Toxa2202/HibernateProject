@@ -1,4 +1,4 @@
-package com.saint.anthony.hibernateHomework.entity;
+package com.saint.anthony.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +9,22 @@ import javax.persistence.Table;
 @Table(name = "Direction")
 public class Direction {
     @Id
+    @Column(name = "id")
+    private Long id;
+
     @Column(name = "departure_iata_airport_code", nullable = false)
     private String departIataAirportCode;
 
     @Column(name = "arrival_iata_airport_code", nullable = false)
     private String arrivalIataAirprotCode;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDepartIataAirportCode() {
         return departIataAirportCode;
@@ -36,6 +47,7 @@ public class Direction {
         return "Direction{" +
                 "departIataAirportCode='" + departIataAirportCode + '\'' +
                 ", arrivalIataAirprotCode='" + arrivalIataAirprotCode + '\'' +
+                ", id=" + id +
                 '}';
     }
 }

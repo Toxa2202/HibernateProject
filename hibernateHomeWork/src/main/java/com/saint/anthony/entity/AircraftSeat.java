@@ -1,4 +1,4 @@
-package com.saint.anthony.hibernateHomework.entity;
+package com.saint.anthony.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,11 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "FlightSeatPrice")
-public class FlightSeatPrice {
+@Table(name = "AircraftSeat")
+public class AircraftSeat {
     @Id
-    @Column(name = "flight_call", unique = true)
-    private Long flightId;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "aircraft_id", nullable = false)
     private Long aircraftId;
@@ -18,15 +18,15 @@ public class FlightSeatPrice {
     @Column(name = "seat_id", nullable = false)
     private Long seatId;
 
-    @Column(name = "price_usd", nullable = false)
-    private Double priceUSD;
+    @Column(name = "travel_class_id", nullable = false)
+    private Long travelClassId;
 
-    public Long getFlightId() {
-        return flightId;
+    public Long getId() {
+        return id;
     }
 
-    public void setFlightId(Long flightId) {
-        this.flightId = flightId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getAircraftId() {
@@ -45,21 +45,21 @@ public class FlightSeatPrice {
         this.seatId = seatId;
     }
 
-    public Double getPriceUSD() {
-        return priceUSD;
+    public Long getTravelClassId() {
+        return travelClassId;
     }
 
-    public void setPriceUSD(Double priceUSD) {
-        this.priceUSD = priceUSD;
+    public void setTravelClassId(Long travelClassId) {
+        this.travelClassId = travelClassId;
     }
 
     @Override
     public String toString() {
-        return "FlightSeatPrice{" +
-                "flightId=" + flightId +
+        return "AircraftSeat{" +
+                "id=" + id +
                 ", aircraftId=" + aircraftId +
                 ", seatId=" + seatId +
-                ", priceUSD=" + priceUSD +
+                ", travelClassId=" + travelClassId +
                 '}';
     }
 }

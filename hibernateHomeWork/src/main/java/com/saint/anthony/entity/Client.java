@@ -1,4 +1,4 @@
-package com.saint.anthony.hibernateHomework.entity;
+package com.saint.anthony.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
