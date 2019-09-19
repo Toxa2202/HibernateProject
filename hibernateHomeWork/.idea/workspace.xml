@@ -328,10 +328,10 @@
     <state x="338" y="390" width="1252" height="145" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/1600.900" timestamp="1568888809267" />
     <state x="543" y="160" width="571" height="605" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1568888809267" />
     <state x="543" y="160" width="571" height="605" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/1600.900" timestamp="1568888809267" />
-    <state x="648" y="357" width="360" height="210" key="Github.ShareDialog" timestamp="1568889564320">
+    <state x="648" y="357" width="360" height="210" key="Github.ShareDialog" timestamp="1568889862418">
       <screen x="67" y="27" width="1533" height="873" />
     </state>
-    <state x="648" y="357" width="360" height="210" key="Github.ShareDialog/67.27.1533.873@67.27.1533.873" timestamp="1568889564320" />
+    <state x="648" y="357" width="360" height="210" key="Github.ShareDialog/67.27.1533.873@67.27.1533.873" timestamp="1568889862418" />
     <state width="1487" height="219" key="GridCell.Tab.0.bottom" timestamp="1568888809267" />
     <state width="1487" height="219" key="GridCell.Tab.0.bottom/1600.900" timestamp="1568888809267" />
     <state width="1487" height="219" key="GridCell.Tab.0.center" timestamp="1568888809267" />
@@ -349,8 +349,11 @@
     </state>
     <state x="93" y="55" key="SettingsEditor/1600.900" timestamp="1568888809267" />
     <state x="93" y="55" width="1024" height="845" key="SettingsEditor/67.27.1533.873@67.27.1533.873" timestamp="1568889058910" />
-    <state x="430" y="190" key="Vcs.Push.Dialog.v2" timestamp="1568888809267" />
+    <state x="430" y="190" width="800" height="526" key="Vcs.Push.Dialog.v2" timestamp="1568890021057">
+      <screen x="67" y="27" width="1533" height="873" />
+    </state>
     <state x="430" y="190" key="Vcs.Push.Dialog.v2/1600.900" timestamp="1568888809267" />
+    <state x="430" y="190" width="800" height="526" key="Vcs.Push.Dialog.v2/67.27.1533.873@67.27.1533.873" timestamp="1568890021057" />
     <state x="586" y="283" width="484" height="330" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1568888809267" />
     <state x="586" y="283" width="484" height="330" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/1600.900" timestamp="1568888809267" />
     <state x="162" y="125" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1568888809267" />
