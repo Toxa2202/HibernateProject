@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.saint.anthony.models.User" table="user">
+        <id name="id" column="id" type="java.lang.Long">
+            <generator class="native"></generator>
+        </id>
+        <property name="firstName" column="first_name" type="java.lang.String"></property>
+        <property name="lastName" column="last_name" type="java.lang.String"></property>
+        <property name="age" column="age" type="java.lang.Integer"></property>
+
+        <set name="roles" table="user_role">
+            <key column="role_id"></key>
+            <many-to-many column="user_id" class="com.saint.anthony.models.User"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
+
+
+
