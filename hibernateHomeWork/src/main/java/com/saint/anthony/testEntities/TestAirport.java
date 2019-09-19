@@ -1,7 +1,6 @@
 package com.saint.anthony.testEntities;
 
 import com.saint.anthony.entity.Airport;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -65,9 +64,9 @@ public class TestAirport {
         try {
             // Get matching client object and output
             airport = tq.getSingleResult();
-            System.out.println(airport.getIataAirportCode() + " " +
-                    airport.getAirportName() + " " +
-                    airport.getCityName() + " " +
+            System.out.println(airport.getIataAirportCode() + " \t| " +
+                    airport.getAirportName() + " \t| " +
+                    airport.getCityName() + " \t| " +
                     airport.getIataCountryCode());
         } catch (NoResultException ex) {
             ex.printStackTrace();
@@ -90,9 +89,9 @@ public class TestAirport {
             // Get matching client object ant output
             airports = tq.getResultList();
             airports.forEach(airport -> System.out.println(
-                    airport.getIataAirportCode() + " " +
-                            airport.getAirportName() + " " +
-                            airport.getCityName() + " " +
+                    airport.getIataAirportCode() + " \t| " +
+                            airport.getAirportName() + " \t| " +
+                            airport.getCityName() + " \t| " +
                             airport.getIataCountryCode()));
         } catch (NoResultException ex) {
             ex.printStackTrace();

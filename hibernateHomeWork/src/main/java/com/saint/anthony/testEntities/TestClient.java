@@ -1,7 +1,6 @@
 package com.saint.anthony.testEntities;
 
 import com.saint.anthony.entity.Client;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class TestClient {
 //        changeFirstName(11, "Oleg");
 //        getClient(11);
 
-        deleteClient(15);
+//        deleteClient(15);
         getClients();
 
         ENTITY_MANAGER_FACTORY.close();
@@ -85,9 +84,13 @@ public class TestClient {
         try {
             // Get matching client object and output
             client = tq.getSingleResult();
-            System.out.println(client.getFirstName() + " " + client.getMiddleName() + " " +
-                    client.getLastName() + " " + client.getPhone() + " " + client.getEmail() + " " +
-                    client.getPassport() + " " + client.getIataCountryCode());
+            System.out.println(client.getFirstName() + " \t| " +
+                    client.getMiddleName() + " \t| " +
+                    client.getLastName() + " \t| " +
+                    client.getPhone() + " \t| " +
+                    client.getEmail() + " \t| " +
+                    client.getPassport() + " \t| " +
+                    client.getIataCountryCode());
         } catch (NoResultException ex) {
             ex.printStackTrace();
         } finally {
@@ -109,12 +112,12 @@ public class TestClient {
             // Get matching client object ant output
             clients = tq.getResultList();
             clients.forEach(client -> System.out.println(
-                    client.getFirstName() + " " +
-                    client.getMiddleName() + " " +
-                    client.getLastName() + " " +
-                    client.getPhone() + " " +
-                    client.getEmail() + " " +
-                    client.getPassport() + " " +
+                    client.getFirstName() + " \t| " +
+                    client.getMiddleName() + " \t| " +
+                    client.getLastName() + " \t| " +
+                    client.getPhone() + " \t| " +
+                    client.getEmail() + " \t| " +
+                    client.getPassport() + " \t| " +
                     client.getIataCountryCode()));
         } catch (NoResultException ex) {
             ex.printStackTrace();
