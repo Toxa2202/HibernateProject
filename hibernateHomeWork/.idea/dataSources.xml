@@ -17,23 +17,5 @@
       </driver-properties>
       <time-zone>UTC</time-zone>
     </data-source>
-    <data-source source="LOCAL" name="hibernateHomework/Hibernate" uuid="4655736a-04a6-4fb0-a6fd-cffa9e6b84e0">
-      <driver-ref>mysql</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>Hibernate
-
-/home/toxa/Desktop/KindGeekAdvanced/hibernateHomeWork/src/main/resources/META-INF/persistence.xml</remarks>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/ryanairDB?serverTimezone=UTC&amp;allowPublicKeyRetrieval=true&amp;useUnicode=true&amp;useSSL=false</jdbc-url>
-      <driver-properties>
-        <property name="autoReconnect" value="true" />
-        <property name="yearIsDateType" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="tinyInt1isBit" value="false" />
-      </driver-properties>
-    </data-source>
   </component>
 </project>
