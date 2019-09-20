@@ -2,12 +2,11 @@ package com.saint.anthony.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "product")
 public class Product extends Model {
+
     @Column(name = "title")
     private String title;
 
@@ -62,5 +61,10 @@ public class Product extends Model {
 
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
+    }
+
+    @Override
+    public String toString() {
+        return super.getId() + " - " + title + " - " + description + " - " + productCategory.getTitle() + " - ";
     }
 }
