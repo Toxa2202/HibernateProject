@@ -6,6 +6,6 @@ public class Main {
     public static void main(String[] args) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-
+        sessionFactory.close();
     }
 }
