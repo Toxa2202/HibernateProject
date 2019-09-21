@@ -4,19 +4,32 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Entity()
 public class Car extends IdHolder {
 
     private String model;
     private Integer power;
 
-    @ManyToMany(mappedBy = "cars")
+    @ManyToMany(mappedBy = "cars", cascade = CascadeType.ALL)
     private List<Person> persons = new ArrayList<>();
 
     @ManyToOne
     private Marka marka;
 
-    public Car() {
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
+    }
+
+    public Marka getMarka() {
+        return marka;
+    }
+
+    public void setMarka(Marka marka) {
+        this.marka = marka;
     }
 
     public String getModel() {
@@ -38,6 +51,7 @@ public class Car extends IdHolder {
     @Override
     public String toString() {
         return "Car{" +
+                "id=" + super.getId() +
                 ", model='" + model + '\'' +
                 ", power=" + power +
                 '}';

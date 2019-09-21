@@ -28,11 +28,4 @@ public class Marka extends IdHolder {
         this.cars = cars;
     }
 
-    @Override
-    public String toString() {
-        return "Marka{" +
-                ", name='" + name + '\'' +
-                ", cars=" + cars +
-                '}';
-    }
 }

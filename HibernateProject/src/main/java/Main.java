@@ -1,6 +1,7 @@
+import entity.Car;
 import entity.Person;
+import repository.CarRepository;
 import repository.PersonRepository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,7 +12,74 @@ public class Main {
     private static Scanner sc = new Scanner(System.in);
 
     private static void authenticatedPerson(EntityManager manager, Person person) {
-        System.out.println("In progress");
+        System.out.println();
+        while (status) {
+            System.out.println("Choose MENU item:" +
+                    "\n1. Get list of CARS" +
+                    "\n2. Add new CAR" +
+                    "\n3. Delete CAR" +
+                    "\n4. Exit from your account");
+            int menuPicker = sc.nextInt();
+            switch (menuPicker) {
+                case 1: {
+                    seeCars(manager, person);
+                    break;
+                }
+                case 2: {
+                    addCar(manager, person);
+                    break;
+                }
+                case 3: {
+                    removeCar(manager, person);
+                    break;
+                }
+                case 4: {
+                    status = false;
+                    System.out.println("See you soon!");
+                    break;
+                }
+                default: {
+                    System.out.println("This item does not exist...");
+                }
+            }
+        }
+    }
+
+    private static void removeCar(EntityManager manager, Person person) {
+        if (person.getCars().isEmpty()) {
+            System.out.println("List is empty. Add some Car!");
+        } else {
+        seeCars(manager, person);
+        System.out.println("Enter ID of Car to delete: ");
+        Long carIdToDelete = sc.nextLong();
+        CarRepository carRepository = new CarRepository(manager);
+        PersonRepository personRepository = new PersonRepository(manager);
+        personRepository.deleteCarFromPerson(person.getId(), carRepository.findById(carIdToDelete));
+        System.out.println("Car was deleted!");
+        }
+    }
+
+    private static void addCar(EntityManager manager, Person person) {
+        System.out.println("Model: ");
+        String model = sc.next();
+        System.out.println("Power: ");
+        Integer power = sc.nextInt();
+        Car car = new Car();
+        car.setModel(model);
+        car.setPower(power);
+        CarRepository carRepository = new CarRepository(manager);
+        carRepository.save(car);
+        PersonRepository personRepository = new PersonRepository(manager);
+        personRepository.addCarToPerson(person.getId(), car);
+        System.out.println("Car saved!");
+    }
+
+    private static void seeCars(EntityManager manager, Person person) {
+        if (person.getCars().isEmpty()) {
+            System.out.println("List is empty. Add some car!");
+        } else {
+        System.out.println(person.getCars());
+        }
     }
 
     private static void login(EntityManager manager) {
@@ -20,7 +88,7 @@ public class Main {
         System.out.println("Password: ");
         String password = sc.next();
         PersonRepository personRepository = new PersonRepository(manager);
-        Person person = personRepository.findPersonBLoginAndPassword(login, password);
+        Person person = personRepository.findPersonByLoginAndPassword(login, password);
         if (person != null) {
             authenticatedPerson(manager, person);
         } else {
@@ -49,7 +117,6 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("blablabla");
         EntityManager manager = factory.createEntityManager();
-//        manager.getTransaction().begin();
 
         while (status) {
             System.out.println("Choose MENU item:\n1. Login\n2. Registration\n3. Exit");
@@ -74,8 +141,6 @@ public class Main {
             }
         }
 
-
-//        manager.getTransaction().commit();
         manager.close();
         factory.close();
 

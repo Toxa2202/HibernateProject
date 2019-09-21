@@ -2,8 +2,6 @@ package repository;
 
 
 import entity.Car;
-import entity.Marka;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -23,13 +21,14 @@ public class CarRepository {
 
     // JOIN Zverny Uvagu
     public List<Car> findAllByMarkaAndModel(Long markaId, String modelValue) {
-        return manager.createQuery("select c from Car c join c.marka m where m.id =:markaId and c.model like :model", Car.class)
+        return manager.createQuery("select c from Car c join c.marka m where m.id =:markaId " +
+                "and c.model like :model", Car.class)
                 .setParameter("markaId", markaId)
                 .setParameter("model", FOR_LIKE + modelValue + FOR_LIKE)
                 .getResultList();
     }
 
-    private Car findById(Long id) {
+    public Car findById(Long id) {
         return manager.createQuery("select c from Car c where c.id =:id", Car.class)
                 .setParameter("id", id)
                 .getSingleResult();

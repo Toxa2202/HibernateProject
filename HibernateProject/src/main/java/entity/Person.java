@@ -16,8 +16,9 @@ public class Person extends IdHolder {
 
     private String password;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Car> cars = new ArrayList<>();
+
 
     public List<Car> getCars() {
         return cars;
@@ -62,7 +63,7 @@ public class Person extends IdHolder {
     @Override
     public String toString() {
         return "Person{" +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
     }
