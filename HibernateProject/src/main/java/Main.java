@@ -45,7 +45,7 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    putCarForSale(manager, person); //todo end this part
+                    putCarForSale(manager, person);
                     break;
                 }
                 case 5: {
@@ -57,7 +57,8 @@ public class Main {
                     break;
                 }
                 case 7: {
-                    buyCar(manager, person); // todo end this part
+//                    buyCar(manager, person); // todo end this part
+                    System.out.println("In progress...");
                     break;
                 }
                 case 8: {
@@ -90,7 +91,19 @@ public class Main {
     }
 
     private static void buyCar(EntityManager manager, Person person) {
-
+        if (person.getBoards().isEmpty()) {
+            System.out.println("List is empty. Try again later...");
+        } else {
+            seeCarsForSale(manager, person);
+            System.out.println("Enter ID of Car to buy: ");
+            Long boardIdToBuy = sc.nextLong();
+            BoardRepository boardRepository = new BoardRepository(manager);
+            PersonRepository personRepository = new PersonRepository(manager);
+            personRepository.addBoardToPerson(person.getId(), boardRepository.findById(boardIdToBuy));
+//            personRepository.addCarToPerson(person.getId(), );
+            boardRepository.save(boardRepository.findById(boardIdToBuy));
+            System.out.println("Car was successfully bought!");
+        }
     }
 
     private static void putCarForSale(EntityManager manager, Person person) {
