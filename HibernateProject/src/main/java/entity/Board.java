@@ -1,7 +1,11 @@
 package entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Board extends IdHolder{
@@ -13,6 +17,17 @@ public class Board extends IdHolder{
 
     @ManyToOne
     private Person person;
+
+    @ManyToMany(mappedBy = "boards", cascade = CascadeType.ALL)
+    private List<Person> persons = new ArrayList<>();
+
+    public List<Person> getPersons() {
+        return persons;
+    }
+
+    public void setPersons(List<Person> persons) {
+        this.persons = persons;
+    }
 
     public String getDescription() {
         return description;
@@ -44,5 +59,15 @@ public class Board extends IdHolder{
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "id=" + super.getId() +
+                "price=" + price +
+                ", car=" + car +
+                ", person=" + person +
+                '}';
     }
 }

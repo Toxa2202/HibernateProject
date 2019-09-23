@@ -1,6 +1,8 @@
 import entity.Car;
+import entity.Marka;
 import entity.Person;
 import repository.CarRepository;
+import repository.MarkaRepository;
 import repository.PersonRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,7 +20,10 @@ public class Main {
                     "\n1. Get list of CARS" +
                     "\n2. Add new CAR" +
                     "\n3. Delete CAR" +
-                    "\n4. Exit from your account");
+                    "\n4. Put the CAR for SALE" +
+                    "\n5. See CARs for SALE" +
+                    "\n6. Buy some CAR" +
+                    "\n7. Exit from your account");
             int menuPicker = sc.nextInt();
             switch (menuPicker) {
                 case 1: {
@@ -34,6 +39,16 @@ public class Main {
                     break;
                 }
                 case 4: {
+                    saleCar(manager, person); //todo end this part
+                    break;
+                }
+                case 5: {
+                    seeCarsForSale(manager, person); // todo end this part
+                }
+                case 6: {
+                    buyCar(manager, person); // todo end this part
+                }
+                case 7: {
                     status = false;
                     System.out.println("See you soon!");
                     break;
@@ -43,6 +58,18 @@ public class Main {
                 }
             }
         }
+    }
+
+    private static void buyCar(EntityManager manager, Person person) {
+
+    }
+
+    private static void seeCarsForSale(EntityManager manager, Person person) {
+
+    }
+
+    private static void saleCar(EntityManager manager, Person person) {
+
     }
 
     private static void removeCar(EntityManager manager, Person person) {
@@ -64,9 +91,16 @@ public class Main {
         String model = sc.next();
         System.out.println("Power: ");
         Integer power = sc.nextInt();
+        System.out.println("Marka: ");
+        String newMarka = sc.next();
         Car car = new Car();
+        Marka marka = new Marka();
         car.setModel(model);
         car.setPower(power);
+        marka.setName(newMarka);
+        car.setMarka(marka);
+        MarkaRepository markaRepository = new MarkaRepository(manager);
+        markaRepository.save(marka);
         CarRepository carRepository = new CarRepository(manager);
         carRepository.save(car);
         PersonRepository personRepository = new PersonRepository(manager);
@@ -194,5 +228,5 @@ public class Main {
 // Робимо пакет окремий - репозиторій, до кожного 5 методів.
  */
 
-
+// домашка 18.09.2019
 // дописати цю програму, додати аутентікейтед, переглядати машини, додавати, видаляти машини

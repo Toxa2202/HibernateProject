@@ -13,7 +13,7 @@ public class Car extends IdHolder {
     @ManyToMany(mappedBy = "cars", cascade = CascadeType.ALL)
     private List<Person> persons = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Marka marka;
 
     public List<Person> getPersons() {
@@ -54,6 +54,7 @@ public class Car extends IdHolder {
                 "id=" + super.getId() +
                 ", model='" + model + '\'' +
                 ", power=" + power +
+                ", marka=" + marka.getName() +
                 '}';
     }
 }

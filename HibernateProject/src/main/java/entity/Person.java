@@ -19,6 +19,16 @@ public class Person extends IdHolder {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Car> cars = new ArrayList<>();
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Board> boards = new ArrayList<>();
+
+    public List<Board> getBoards() {
+        return boards;
+    }
+
+    public void setBoards(List<Board> boards) {
+        this.boards = boards;
+    }
 
     public List<Car> getCars() {
         return cars;
