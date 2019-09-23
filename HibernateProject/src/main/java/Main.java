@@ -1,29 +1,35 @@
+import entity.Board;
 import entity.Car;
 import entity.Marka;
 import entity.Person;
+import repository.BoardRepository;
 import repository.CarRepository;
 import repository.MarkaRepository;
 import repository.PersonRepository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.Scanner;
 
 public class Main {
-    private static boolean status = true;
+    private static boolean mainStatus = true;
+    private static boolean authStatus = true;
     private static Scanner sc = new Scanner(System.in);
+    private static Scanner scLine = new Scanner(System.in);
 
     private static void authenticatedPerson(EntityManager manager, Person person) {
         System.out.println();
-        while (status) {
+        while (authStatus) {
             System.out.println("Choose MENU item:" +
                     "\n1. Get list of CARS" +
                     "\n2. Add new CAR" +
                     "\n3. Delete CAR" +
                     "\n4. Put the CAR for SALE" +
-                    "\n5. See CARs for SALE" +
-                    "\n6. Buy some CAR" +
-                    "\n7. Exit from your account");
+                    "\n5. See my CARs for SALE" +
+                    "\n6. See all CARs for SALE" +
+                    "\n7. Buy some CAR" +
+                    "\n8. Exit from your account");
             int menuPicker = sc.nextInt();
             switch (menuPicker) {
                 case 1: {
@@ -39,18 +45,24 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    saleCar(manager, person); //todo end this part
+                    putCarForSale(manager, person); //todo end this part
                     break;
                 }
                 case 5: {
-                    seeCarsForSale(manager, person); // todo end this part
+                    seeMyCarsForSale(manager, person);
+                    break;
                 }
                 case 6: {
-                    buyCar(manager, person); // todo end this part
+                    seeCarsForSale(manager, person);
+                    break;
                 }
                 case 7: {
-                    status = false;
-                    System.out.println("See you soon!");
+                    buyCar(manager, person); // todo end this part
+                    break;
+                }
+                case 8: {
+                    authStatus = false;
+                    System.out.println("Choose another option!");
                     break;
                 }
                 default: {
@@ -60,29 +72,60 @@ public class Main {
         }
     }
 
+    private static void seeCarsForSale(EntityManager manager, Person person) {
+        BoardRepository boardRepository = new BoardRepository(manager);
+        if (boardRepository.findAll().isEmpty()) {
+            System.out.println("list is empty!");
+        } else {
+            System.out.println(boardRepository.findAll());
+        }
+    }
+
+    private static void seeMyCarsForSale(EntityManager manager, Person person) {
+        if (person.getBoards().isEmpty()) {
+            System.out.println("List is empty. Add some car!");
+        } else {
+            System.out.println(person.getBoards());
+        }
+    }
+
     private static void buyCar(EntityManager manager, Person person) {
 
     }
 
-    private static void seeCarsForSale(EntityManager manager, Person person) {
-
-    }
-
-    private static void saleCar(EntityManager manager, Person person) {
-
+    private static void putCarForSale(EntityManager manager, Person person) {
+        if (person.getCars().isEmpty()) {
+            System.out.println("List is empty. First add some car to your list.");
+        } else {
+            System.out.println("Description: ");
+            String description = scLine.nextLine();
+            System.out.println("Price: ");
+            Integer price = sc.nextInt();
+            System.out.println("ID of your Car: ");
+            Long carID = sc.nextLong();
+            Board board = new Board();
+            board.setDescription(description);
+            board.setPrice(price);
+            CarRepository carRepository = new CarRepository(manager);
+            board.setCar(carRepository.findById(carID));
+            board.setPerson(person);
+            PersonRepository personRepository = new PersonRepository(manager);
+            personRepository.addBoardToPerson(person.getId(), board);
+            System.out.println("Car is ready for SALE!");
+        }
     }
 
     private static void removeCar(EntityManager manager, Person person) {
         if (person.getCars().isEmpty()) {
             System.out.println("List is empty. Add some Car!");
         } else {
-        seeCars(manager, person);
-        System.out.println("Enter ID of Car to delete: ");
-        Long carIdToDelete = sc.nextLong();
-        CarRepository carRepository = new CarRepository(manager);
-        PersonRepository personRepository = new PersonRepository(manager);
-        personRepository.deleteCarFromPerson(person.getId(), carRepository.findById(carIdToDelete));
-        System.out.println("Car was deleted!");
+            seeCars(manager, person);
+            System.out.println("Enter ID of Car to delete: ");
+            Long carIdToDelete = sc.nextLong();
+            CarRepository carRepository = new CarRepository(manager);
+            PersonRepository personRepository = new PersonRepository(manager);
+            personRepository.deleteCarFromPerson(person.getId(), carRepository.findById(carIdToDelete));
+            System.out.println("Car was deleted!");
         }
     }
 
@@ -112,7 +155,7 @@ public class Main {
         if (person.getCars().isEmpty()) {
             System.out.println("List is empty. Add some car!");
         } else {
-        System.out.println(person.getCars());
+            System.out.println(person.getCars());
         }
     }
 
@@ -152,24 +195,24 @@ public class Main {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("blablabla");
         EntityManager manager = factory.createEntityManager();
 
-        while (status) {
+        while (mainStatus) {
             System.out.println("Choose MENU item:\n1. Login\n2. Registration\n3. Exit");
             int menuPicker = sc.nextInt();
             switch (menuPicker) {
-                case 1:{
+                case 1: {
                     login(manager);
                     break;
                 }
-                case 2:{
+                case 2: {
                     register(manager);
                     break;
                 }
-                case 3:{
-                    status = false;
+                case 3: {
+                    mainStatus = false;
                     System.out.println("Have a nice day!");
                     break;
                 }
-                default:{
+                default: {
                     System.out.println("This item does not exist...");
                 }
             }
@@ -223,9 +266,9 @@ public class Main {
 }
 
 /**
-// домашка
-// Описати в гібернейті всю базу. Для всіх crud операції, findAll, findById.
-// Робимо пакет окремий - репозиторій, до кожного 5 методів.
+ * // домашка
+ * // Описати в гібернейті всю базу. Для всіх crud операції, findAll, findById.
+ * // Робимо пакет окремий - репозиторій, до кожного 5 методів.
  */
 
 // домашка 18.09.2019

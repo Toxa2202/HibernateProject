@@ -1,7 +1,6 @@
 package repository;
 
 import entity.Board;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 

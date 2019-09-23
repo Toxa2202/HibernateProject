@@ -1,5 +1,6 @@
 package repository;
 
+import entity.Board;
 import entity.Car;
 import entity.Person;
 import javax.persistence.EntityManager;
@@ -48,9 +49,21 @@ public class PersonRepository {
         save(person);
     }
 
+    public void addBoardToPerson(Long personId, Board board) {
+        Person person = findById(personId);
+        person.getBoards().add(board);
+        save(person);
+    }
+
     public void deleteCarFromPerson(Long personId, Car car) {
         Person person = findById(personId);
         person.getCars().remove(car);
+        save(person);
+    }
+
+    public void deleteBoardFromPerson(Long personId, Board board) {
+        Person person = findById(personId);
+        person.getBoards().remove(board);
         save(person);
     }
 }

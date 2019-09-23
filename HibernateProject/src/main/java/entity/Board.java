@@ -63,10 +63,11 @@ public class Board extends IdHolder{
 
     @Override
     public String toString() {
-        return "Board{" +
-                "id=" + super.getId() +
-                "price=" + price +
-                ", car=" + car +
+        return "\n" +
+                "id= " + super.getId() +
+                ", description= " + description +
+                ", price= " + price +
+                ", car= " + car +
                 ", person=" + person +
                 '}';
     }
