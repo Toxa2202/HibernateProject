@@ -61,9 +61,9 @@ public class PersonRepository {
         save(person);
     }
 
-    public void deleteBoardFromPerson(Long personId, Board board) {
+    public void deleteBoardFromPerson(Long personId, Board boardID) {
         Person person = findById(personId);
-        person.getBoards().remove(board);
+        person.getBoards().remove(boardID);
         save(person);
     }
 }

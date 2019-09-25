@@ -57,8 +57,8 @@ public class Main {
                     break;
                 }
                 case 7: {
-//                    buyCar(manager, person); // todo end this part
-                    System.out.println("In progress...");
+                    buyCar(manager, person); // todo end this part
+//                    System.out.println("In progress...");
                     break;
                 }
                 case 8: {
@@ -99,9 +99,16 @@ public class Main {
             Long boardIdToBuy = sc.nextLong();
             BoardRepository boardRepository = new BoardRepository(manager);
             PersonRepository personRepository = new PersonRepository(manager);
-            personRepository.addBoardToPerson(person.getId(), boardRepository.findById(boardIdToBuy));
-//            personRepository.addCarToPerson(person.getId(), );
-            boardRepository.save(boardRepository.findById(boardIdToBuy));
+            Board board = new Board();
+            Car car = boardRepository.findById(boardIdToBuy).getCar();
+            Long idOfPerson = boardRepository.findById(boardIdToBuy).getPerson().getId();
+            // add car to new owner
+            personRepository.addCarToPerson(person.getId(), car);
+            personRepository.deleteCarFromPerson(idOfPerson, car);
+            // delete from Person_Board
+            personRepository.deleteBoardFromPerson(idOfPerson, boardRepository.findById(boardIdToBuy));
+            //delete board value from desk
+            boardRepository.delete(boardIdToBuy);
             System.out.println("Car was successfully bought!");
         }
     }

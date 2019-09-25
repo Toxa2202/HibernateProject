@@ -37,6 +37,12 @@ public class BoardRepository {
                 .getSingleResult();
     }
 
+//    public Board findPersonByBoardId (Long id) {
+//        return manager.createQuery("select b from Board b where b.person.id =:id", Board.class)
+//                .setParameter("id", id)
+//                .getSingleResult();
+//    }
+
     public void save(Board board) {
         manager.getTransaction().begin();
         manager.merge(board);
@@ -45,7 +51,7 @@ public class BoardRepository {
 
     public void delete(Long id) {
         manager.getTransaction().begin();
-        manager.remove(id);
+        manager.remove(findById(id));
         manager.getTransaction().commit();
     }
 }
