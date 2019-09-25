@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--Бін це, зазвичай, об'єкт який створює спрінг-->
+    <!--id - це ім'я біна за допомогою якого можна звернутись до цього біна при описі інших-->
+    <!--class - обов'язковий атрибут що б спрінг знав з чого робити бін-->
+    <bean id="lampDevice" class="com.saint.anthony.classes.Lamp"/>
+
+    <bean id="tvDevice" class="com.saint.anthony.classes.TV"/>
+
+    <!--destroy-method - метод який спрінг викличе при завершені програми і знищенні екземпляру-->
+    <!--init-method - метод який спрінг викличе відразу після створення екземпляру класу-->
+    <bean id="switcher" class="com.saint.anthony.classes.Switcher"
+          destroy-method="deathSwitcher" init-method="createSwitcher">
+        <!--проперті - це поле класу, яке спрінг може заповнити як значенням-->
+        <property name="name" value="StandardDevice"/>
+        <!--або іншим біном, при цьому звязок працює через інтерфейс Provider-->
+        <property name="electricityConsumer" ref="tvDevice"/>
+    </bean>
+</beans>
