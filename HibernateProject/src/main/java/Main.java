@@ -57,8 +57,7 @@ public class Main {
                     break;
                 }
                 case 7: {
-                    buyCar(manager, person); // todo end this part
-//                    System.out.println("In progress...");
+                    buyCar(manager, person);
                     break;
                 }
                 case 8: {
