@@ -7,3 +7,6 @@ public class Drone implements Provider {
         System.out.println("I am drone.\nI delivered goods very fast.");
     }
 }
+
+
+// Class connects to the interface and overrides his method

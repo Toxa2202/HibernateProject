@@ -7,3 +7,5 @@ public class Courier implements Provider {
         System.out.println("I am courier.\nI delivered goods really slow.");
     }
 }
+
+// Class connects to interface and overrides his method
